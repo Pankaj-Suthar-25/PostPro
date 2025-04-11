@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "816597884276",
+    "project_id": "post-pro-v1",
+    "storage_bucket": "post-pro-v1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816597884276:android:a59f991f594d7f71836021",
+        "android_client_info": {
+          "package_name": "com.example.postpro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDABkTFPfZIuXMOJAUYLPVCEPLT5D9HtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
