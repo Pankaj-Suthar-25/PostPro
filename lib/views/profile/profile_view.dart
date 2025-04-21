@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/profile_controller.dart';
 import '../profile/stats_view.dart';
+import '../profile/edit_profile_view.dart';
+import '../profile/stories_view.dart';
+import '../profile/lists_view.dart';
+import '../profile/about_view.dart';
 
 class ProfileView extends StatelessWidget {
   final ProfileController _profileController = Get.put(ProfileController());
@@ -54,7 +58,7 @@ class ProfileView extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to edit profile view
+                    Get.to(() => EditProfileView());
                   },
                   child: Text('Edit Profile'),
                 ),
@@ -65,19 +69,19 @@ class ProfileView extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    // Show stories
+                    Get.to(() => StoriesView());
                   },
                   child: Text('Stories'),
                 ),
                 TextButton(
                   onPressed: () {
-                    // Show lists
+                    Get.to(() => ListsView());
                   },
                   child: Text('Lists'),
                 ),
                 TextButton(
                   onPressed: () {
-                    // Show about
+                    Get.to(() => AboutView());
                   },
                   child: Text('About'),
                 ),

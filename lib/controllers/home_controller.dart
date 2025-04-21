@@ -6,11 +6,19 @@ class HomeController extends GetxController {
   // ignore: unused_field
   final StoryService _storyService = StoryService();
   var stories = <StoryModel>[].obs;
+  var selectedCategory = 'For you'.obs; // Default category
 
   @override
   void onInit() {
     super.onInit();
     fetchStories();
+  }
+
+  void changeCategory(String category) {
+    selectedCategory.value = category;
+    // TODO: Implement logic to fetch/filter stories based on the new category
+    print('Category changed to: $category. Need to implement filtering.');
+    // fetchStories(); // Re-fetch or filter stories based on selectedCategory.value
   }
 
   void fetchStories() async {

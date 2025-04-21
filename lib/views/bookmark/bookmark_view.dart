@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/bookmark_controller.dart';
 import '../../widgets/story_list_item.dart';
+import 'new_list_view.dart';
+import 'your_lists_view.dart';
+import 'saved_list_view.dart';
+import 'highlights_view.dart';
+import 'reading_history_view.dart';
 
 class BookmarkView extends StatelessWidget {
   final BookmarkController _bookmarkController = Get.put(BookmarkController());
@@ -17,7 +22,7 @@ class BookmarkView extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              // Navigate to new list view
+              Get.to(() => NewListView());
             },
           ),
         ],
@@ -29,10 +34,18 @@ class BookmarkView extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                TextButton(onPressed: () {}, child: Text('Your Lists')),
-                TextButton(onPressed: () {}, child: Text('Saved List')),
-                TextButton(onPressed: () {}, child: Text('Highlights')),
-                TextButton(onPressed: () {}, child: Text('Reading History')),
+                TextButton(onPressed: () {
+                  Get.to(() => YourListsView());
+                }, child: Text('Your Lists')),
+                TextButton(onPressed: () {
+                  Get.to(() => SavedListView());
+                }, child: Text('Saved List')),
+                TextButton(onPressed: () {
+                  Get.to(() => HighlightsView());
+                }, child: Text('Highlights')),
+                TextButton(onPressed: () {
+                  Get.to(() => ReadingHistoryView());
+                }, child: Text('Reading History')),
               ],
             ),
           ),

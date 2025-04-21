@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/explore_controller.dart';
 import '../../widgets/story_list_item.dart';
+import 'topic_view.dart';
 
 class ExploreView extends StatelessWidget {
   final ExploreController _exploreController = Get.put(ExploreController());
@@ -33,12 +34,39 @@ class ExploreView extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                TextButton(onPressed: () {}, child: Text('All')),
-                TextButton(onPressed: () {}, child: Text('Flutter')),
-                TextButton(onPressed: () {}, child: Text('iOS')),
-                TextButton(onPressed: () {}, child: Text('Design')),
-                TextButton(onPressed: () {}, child: Text('Technology')),
-                TextButton(onPressed: () {}, child: Text('Programming')),
+                TextButton(
+                    onPressed: () {
+                      // Navigate to All topics view
+                      // Need to define how 'All' topics are handled/displayed
+                      print(
+                          'Navigate to All Topics View - Implementation needed'); // Temp placeholder
+                    },
+                    child: const Text('All')),
+                TextButton(
+                    onPressed: () {
+                      Get.to(() => TopicView(topic: 'Flutter'));
+                    },
+                    child: const Text('Flutter')),
+                TextButton(
+                    onPressed: () {
+                      Get.to(() => TopicView(topic: 'iOS'));
+                    },
+                    child: const Text('iOS')),
+                TextButton(
+                    onPressed: () {
+                      Get.to(() => TopicView(topic: 'Design'));
+                    },
+                    child: const Text('Design')),
+                TextButton(
+                    onPressed: () {
+                      Get.to(() => TopicView(topic: 'Technology'));
+                    },
+                    child: const Text('Technology')),
+                TextButton(
+                    onPressed: () {
+                      Get.to(() => TopicView(topic: 'Programming'));
+                    },
+                    child: const Text('Programming')),
               ],
             ),
           ),
