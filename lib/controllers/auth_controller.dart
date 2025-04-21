@@ -7,11 +7,13 @@ class AuthController extends GetxController {
   var user = UserModel(id: '', email: '', name: '').obs;
 
   Future<void> login(String email, String password) async {
-    user.value = await _authService.login(email, password);
+    UserModel loggedInUser = await _authService.login(email, password);
+    user.value = loggedInUser;
   }
 
   Future<void> signup(String email, String password) async {
-    user.value = await _authService.signup(email, password);
+    UserModel signedUpUser = await _authService.signup(email, password);
+    user.value = signedUpUser;
   }
 
   Future<void> logout() async {

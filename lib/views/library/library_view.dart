@@ -10,7 +10,6 @@ class LibraryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Library')),
       body: Obx(() {
         return ListView.builder(
           itemCount: _bookmarkController.bookmarkedStories.length,

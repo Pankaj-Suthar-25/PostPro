@@ -37,7 +37,14 @@ class AuthController extends GetxController {
     user.value = UserModel(id: '', name: '', email: '');
   }
 
-  resetPassword(String text) {}
+  // In lib/controllers/auth_controller.dart
+  Future<void> resetPassword(String email) async {
+    try {
+      await _authService.resetPassword(email);
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+    }
+  }
 }
 
 --- End of lib/controllers/auth_controller.dart ---
@@ -140,8 +147,13 @@ class TopicController extends GetxController {
   final TopicService _topicService = TopicService();
   var topics = <TopicModel>[].obs;
 
+  // In lib/controllers/topic_controller.dart
   void fetchTopics() async {
-    topics.value = await _topicService.fetchTopics();
+    try {
+      topics.value = await _topicService.fetchTopics();
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+    }
   }
 }
 
@@ -373,6 +385,11 @@ class AuthService {
       // You may also want to update the user in your database
     }
   }
+
+  // In lib/services/auth_service.dart
+  Future<void> resetPassword(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
 }
 
 --- End of lib/services/auth_service.dart ---
@@ -420,9 +437,22 @@ class StoryService {
     });
   }
 
+  // In lib/services/story_service.dart
   Future<List<StoryModel>> fetchBookmarkedStories() async {
-    // Logic to fetch bookmarked stories
-    return [];
+    // Assuming you have a way to get the current user's ID
+    String currentUserId = 'currentUser Id'; // Replace with actual user ID
+    QuerySnapshot snapshot = await _firestore
+        .collection('bookmarks')
+        .where('userId', isEqualTo: currentUserId)
+        .get();
+    return snapshot.docs.map((doc) => StoryModel(
+      id: doc.id,
+      title: doc['title'],
+      content: doc['content'],
+      authorId: doc['authorId'],
+      publicationId: doc['publicationId'],
+      createdAt: doc['createdAt'].toDate(),
+    )).toList();
   }
 
   Future<List<StoryModel>> fetchTrendingStories() async {
@@ -447,9 +477,14 @@ import '../models/topic_model.dart';
 class TopicService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // In lib/services/topic_service.dart
   Future<List<TopicModel>> fetchTopics() async {
     QuerySnapshot snapshot = await _firestore.collection('topics').get();
-    return snapshot.docs.map((doc) => TopicModel(id: doc.id, name: doc['name'], storyCount: doc['storyCount'])).toList();
+    return snapshot.docs.map((doc) => TopicModel(
+      id: doc.id,
+      name: doc['name'],
+      storyCount: doc['storyCount'],
+    )).toList();
   }
 }
 
@@ -1014,12 +1049,16 @@ class LibraryView extends StatelessWidget {
 --- End of lib/views/library/library_view.dart ---
 
 Contents of lib/views/profile/edit_profile_view.dart:
+// In lib/views/profile/edit_profile_view.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/profile_controller.dart';
+import '../../models/user_model.dart';
 
 class EditProfileView extends StatelessWidget {
   final ProfileController _profileController = Get.put(ProfileController());
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
 
   EditProfileView({super.key});
 
@@ -1030,11 +1069,24 @@ class EditProfileView extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            TextField(decoration: InputDecoration(labelText: 'Name')),
-            TextField(decoration: InputDecoration(labelText: 'Bio')),
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: 'Name'),
+            ),
+            TextField(
+              controller: bioController,
+              decoration: InputDecoration(labelText: 'Bio'),
+            ),
             ElevatedButton(
               onPressed: () {
-                // Call update profile method
+                _profileController.updateUser(UserModel(
+                  id: _profileController.user.value.id,
+                  name: nameController.text,
+                  email: _profileController.user.value.email,
+                  followersCount: _profileController.user.value.followersCount,
+                  followingCount: _profileController.user.value.followingCount,
+                ));
+                Get.back(); // Go back after updating
               },
               child: Text('Save'),
             ),
@@ -1044,7 +1096,6 @@ class EditProfileView extends StatelessWidget {
     );
   }
 }
-
 --- End of lib/views/profile/edit_profile_view.dart ---
 
 Contents of lib/views/profile/profile_view.dart:
