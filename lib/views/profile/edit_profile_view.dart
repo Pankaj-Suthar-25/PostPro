@@ -32,6 +32,8 @@ class EditProfileView extends StatelessWidget {
                   id: _profileController.user.value.id,
                   name: nameController.text,
                   email: _profileController.user.value.email,
+                  username: _profileController.user.value.username,
+                  bio: bioController.text,
                   followersCount: _profileController.user.value.followersCount,
                   followingCount: _profileController.user.value.followingCount,
                 ));

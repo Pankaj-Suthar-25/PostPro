@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../../controllers/profile_controller.dart';
 import '../profile/stats_view.dart';
 import '../profile/edit_profile_view.dart';
-import '../profile/stories_view.dart';
 import '../profile/lists_view.dart';
 import '../profile/about_view.dart';
 
@@ -31,7 +30,7 @@ class ProfileView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _profileController.user.value.name,
+                        _profileController.user.value.username ?? _profileController.user.value.name,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 8),
@@ -69,12 +68,6 @@ class ProfileView extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    Get.to(() => StoriesView());
-                  },
-                  child: Text('Stories'),
-                ),
-                TextButton(
-                  onPressed: () {
                     Get.to(() => ListsView());
                   },
                   child: Text('Lists'),
@@ -86,15 +79,6 @@ class ProfileView extends StatelessWidget {
                   child: Text('About'),
                 ),
               ],
-            ),
-            // Stories list view
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return ListTile(title: Text('Story $index'));
-                },
-              ),
             ),
           ],
         );

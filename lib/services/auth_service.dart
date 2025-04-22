@@ -9,9 +9,10 @@ class AuthService {
     return UserModel(id: userCredential.user!.uid, email: email, name: '');
   }
 
-  Future<UserModel> signup(String email, String password) async {
+  Future<UserModel> signup(String email, String password, String username) async {
     UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-    return UserModel(id: userCredential.user!.uid, email: email, name: '');
+    await userCredential.user!.updateProfile(displayName: username);
+    return UserModel(id: userCredential.user!.uid, email: email, name: '', username: username);
   }
 
   Future<void> logout() async {
@@ -20,16 +21,13 @@ class AuthService {
 
   Future<UserModel> getUser() async {
     User? user = _firebaseAuth.currentUser ;
-    return UserModel(id: user!.uid, email: user.email!, name: '');
+    return UserModel(id: user!.uid, email: user.email!, name: '', username: user.displayName);
   }
 
   Future<void> updateUser (UserModel updatedUser ) async {
     User? user = _firebaseAuth.currentUser ;
     if (user != null) {
-      // Update user profile logic here
-      // For example, you can update the user's display name or other attributes
-      await user.updateProfile(displayName: updatedUser .name);
-      // You may also want to update the user in your database
+      await user.updateProfile(displayName: updatedUser.username ?? updatedUser.name);
     }
   }
 

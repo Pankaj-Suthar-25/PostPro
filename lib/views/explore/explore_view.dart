@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/explore_controller.dart';
 import '../../widgets/story_list_item.dart';
-import 'topic_view.dart';
 
 class ExploreView extends StatelessWidget {
   final ExploreController _exploreController = Get.put(ExploreController());
@@ -36,35 +35,32 @@ class ExploreView extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: () {
-                      // Navigate to All topics view
-                      // Need to define how 'All' topics are handled/displayed
-                      print(
-                          'Navigate to All Topics View - Implementation needed'); // Temp placeholder
+                      _exploreController.filterByTopic('All');
                     },
                     child: const Text('All')),
                 TextButton(
                     onPressed: () {
-                      Get.to(() => TopicView(topic: 'Flutter'));
+                      _exploreController.filterByTopic('Flutter');
                     },
                     child: const Text('Flutter')),
                 TextButton(
                     onPressed: () {
-                      Get.to(() => TopicView(topic: 'iOS'));
+                      _exploreController.filterByTopic('iOS');
                     },
                     child: const Text('iOS')),
                 TextButton(
                     onPressed: () {
-                      Get.to(() => TopicView(topic: 'Design'));
+                      _exploreController.filterByTopic('Design');
                     },
                     child: const Text('Design')),
                 TextButton(
                     onPressed: () {
-                      Get.to(() => TopicView(topic: 'Technology'));
+                      _exploreController.filterByTopic('Technology');
                     },
                     child: const Text('Technology')),
                 TextButton(
                     onPressed: () {
-                      Get.to(() => TopicView(topic: 'Programming'));
+                      _exploreController.filterByTopic('Programming');
                     },
                     child: const Text('Programming')),
               ],

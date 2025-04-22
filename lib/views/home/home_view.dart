@@ -45,27 +45,21 @@ class HomeView extends StatelessWidget {
                         _homeController.changeCategory('For you'); 
                       }, child: Text('For you')),
                       TextButton(onPressed: () {
-                        // Filter content for "Following" category
-                        _homeController.changeCategory('Following'); 
+                        _homeController.filterFollowing();
                       }, child: Text('Following')),
                       TextButton(onPressed: () {
-                        // Filter content for "Featured" category
-                        _homeController.changeCategory('Featured'); 
+                        _homeController.changeCategory('Featured');
                       }, child: Text('Featured')),
                       TextButton(onPressed: () {
-                        // Filter content for "New" category
                         print('Filtering content for "New"'); // Placeholder
                       }, child: Text('New')),
                       TextButton(onPressed: () {
-                        // Filter content for "Flutter" category
                         print('Filtering content for "Flutter"'); // Placeholder
                       }, child: Text('Flutter')),
                       TextButton(onPressed: () {
-                        // Filter content for "iOS" category
-                        print('Filtering content for "iOS"'); // Placeholder
+                        _homeController.filterByText('iOS');
                       }, child: Text('iOS')),
                       TextButton(onPressed: () {
-                        // Filter content for "Design" category
                         print('Filtering content for "Design"'); // Placeholder
                       }, child: Text('Design')),
                     ],
@@ -126,7 +120,7 @@ class HomeView extends StatelessWidget {
           )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _mainController.changePage(2);
+          Get.to(() => CreateBlogView());
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add, color: Colors.white),

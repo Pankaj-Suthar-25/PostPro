@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../models/story_model.dart';
 
+import 'package:get/get.dart';
+
 class StoryCard extends StatelessWidget {
   final StoryModel story;
 
@@ -8,12 +10,69 @@ class StoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Text(story.title, style: TextStyle(fontSize: 20)),
-          Text(story.content),
-        ],
+    return InkWell(
+      onTap: () {
+        Get.to(() => Scaffold(appBar: AppBar(title: Text('Full Post View')), body: Center(child: Text('Full Post View'))));
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(story.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 8),
+              Text(
+                story.content,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.thumb_up_alt_outlined),
+                        onPressed: () {
+                          // Implement like functionality
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.thumb_down_alt_outlined),
+                        onPressed: () {
+                          // Implement dislike functionality
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.comment_outlined),
+                        onPressed: () {
+                          // Implement comment functionality
+                        },
+                      ),
+                    ],
+                  ),
+                  PopupMenuButton<String>(
+                    onSelected: (String item) {
+                      // Handle item selection
+                    },
+                    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                      const PopupMenuItem<String>(
+                        value: 'save',
+                        child: Text('Save'),
+                      ),
+                      const PopupMenuItem<String>(
+                        value: 'report',
+                        child: Text('Report'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

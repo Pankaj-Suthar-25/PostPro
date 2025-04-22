@@ -53,4 +53,12 @@ class HomeController extends GetxController {
     ];
     // stories.value = await _storyService.fetchStories();
   }
+
+  void filterFollowing() {
+    stories.value = stories.where((story) => story.authorId == '1').toList();
+  }
+
+  void filterByText(String text) {
+    stories.value = stories.where((story) => story.title.contains(text) || story.content.contains(text)).toList();
+  }
 }

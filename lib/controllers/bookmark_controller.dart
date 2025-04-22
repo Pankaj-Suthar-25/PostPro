@@ -13,4 +13,17 @@ class BookmarkController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
+
+  // Dummy data for collections
+  List<Collection> get collections => [
+        Collection(name: 'Recipes'),
+        Collection(name: 'Travel'),
+        Collection(name: 'Technology'),
+      ];
+}
+
+class Collection {
+  final String name;
+
+  Collection({required this.name});
 }

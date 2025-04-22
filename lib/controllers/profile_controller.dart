@@ -4,7 +4,7 @@ import '../services/auth_service.dart';
 
 class ProfileController extends GetxController {
   final AuthService _authService = AuthService();
-  var user = UserModel(id: '', name: '', email: '').obs;
+  var user = UserModel(id: '', name: '', email: '', username: '').obs;
 
   void fetchUser() async {
     user.value = await _authService.getUser();
@@ -12,7 +12,7 @@ class ProfileController extends GetxController {
 
   void updateUser (UserModel updatedUser ) async {
     try {
-      await _authService.updateUser (updatedUser );
+      await _authService.updateUser (updatedUser);
       fetchUser (); // Refresh user data after update
     } catch (e) {
       Get.snackbar('Error', e.toString());

@@ -28,4 +28,14 @@ class ExploreController extends GetxController {
           story.content.toLowerCase().contains(query.toLowerCase())).toList();
     }
   }
+
+  void filterByTopic(String topic) {
+    if (topic == 'All') {
+      searchResults.value = trendingStories;
+    } else {
+      searchResults.value = trendingStories.where((story) =>
+          story.title.toLowerCase().contains(topic.toLowerCase()) ||
+          story.content.toLowerCase().contains(topic.toLowerCase())).toList();
+    }
+  }
 }

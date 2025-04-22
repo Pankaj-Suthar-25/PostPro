@@ -14,9 +14,6 @@ class _CreateBlogViewState extends State<CreateBlogView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Blog'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -28,12 +25,23 @@ class _CreateBlogViewState extends State<CreateBlogView> {
               ),
             ),
             const SizedBox(height: 16),
-            TextFormField(
-              controller: _contentController,
-              decoration: const InputDecoration(
-                hintText: 'Blog Content',
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(5),
               ),
-              maxLines: 10,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: _contentController,
+                  decoration: const InputDecoration(
+                    hintText: 'Blog Content',
+                    border: InputBorder.none,
+                  ),
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(

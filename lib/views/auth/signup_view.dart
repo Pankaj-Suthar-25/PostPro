@@ -7,6 +7,7 @@ class SignupView extends StatelessWidget {
   final AuthController _authController = Get.put(AuthController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
 
   SignupView({super.key});
 
@@ -17,6 +18,10 @@ class SignupView extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(labelText: 'Username'),
+            ),
             TextField(
               controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
@@ -29,7 +34,7 @@ class SignupView extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  await _authController.signup(emailController.text, passwordController.text);
+                  await _authController.signup(emailController.text, passwordController.text, usernameController.text);
                   Get.offAll(HomeView()); // Navigate to HomeView after signup
                 } catch (e) {
                   Get.snackbar('Error', e.toString());

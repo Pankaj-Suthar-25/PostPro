@@ -4,21 +4,21 @@ import '../services/auth_service.dart';
 
 class AuthController extends GetxController {
   final AuthService _authService = AuthService();
-  var user = UserModel(id: '', email: '', name: '').obs;
+  var user = UserModel(id: '', email: '', name: '', username: null).obs;
 
   Future<void> login(String email, String password) async {
     UserModel loggedInUser = await _authService.login(email, password);
     user.value = loggedInUser;
   }
 
-  Future<void> signup(String email, String password) async {
-    UserModel signedUpUser = await _authService.signup(email, password);
+  Future<void> signup(String email, String password, String username) async {
+    UserModel signedUpUser = await _authService.signup(email, password, username);
     user.value = signedUpUser;
   }
 
   Future<void> logout() async {
     await _authService.logout();
-    user.value = UserModel(id: '', name: '', email: '');
+    user.value = UserModel(id: '', name: '', email: '', username: null);
   }
 
   // In lib/controllers/auth_controller.dart
