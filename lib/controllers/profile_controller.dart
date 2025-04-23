@@ -6,6 +6,12 @@ class ProfileController extends GetxController {
   final AuthService _authService = AuthService();
   var user = UserModel(id: '', name: '', email: '', username: '').obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUser();
+  }
+
   void fetchUser() async {
     user.value = await _authService.getUser();
   }

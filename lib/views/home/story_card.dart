@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'story_detail_view.dart';
 import '../../models/story_model.dart';
 
 import 'package:get/get.dart';
@@ -12,7 +13,7 @@ class StoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => Scaffold(appBar: AppBar(title: Text('Full Post View')), body: Center(child: Text('Full Post View'))));
+        Get.to(() => StoryDetailView(story: story));
       },
       child: Card(
         child: Padding(

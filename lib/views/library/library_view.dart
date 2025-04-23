@@ -10,14 +10,12 @@ class LibraryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        return ListView.builder(
-          itemCount: _bookmarkController.collections.length,
-          itemBuilder: (context, index) {
-            return ListTile(title: Text(_bookmarkController.collections[index].name));
-          },
-        );
-      }),
+      body: ListView.builder(
+        itemCount: _bookmarkController.collections.length,
+        itemBuilder: (context, index) {
+          return Obx(() => ListTile(title: Text(_bookmarkController.collections[index].name)));
+        },
+      ),
     );
   }
 }
