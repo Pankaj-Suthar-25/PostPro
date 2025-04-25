@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'firebase_options.dart';
 import 'views/auth/login_view.dart';
 import 'themes/light_theme.dart';
+import 'controllers/main_controller.dart';
+
 import 'themes/dark_theme.dart';
 
 void main() async {
@@ -17,13 +19,17 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
+        String initialRoute = "/login";
     return GetMaterialApp(
       title: 'PostPro',
       theme: LightTheme.theme,
       darkTheme: DarkTheme.theme,
-      home: LoginView(),
+      themeMode: ThemeMode.system,
+      initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
     );
   }
