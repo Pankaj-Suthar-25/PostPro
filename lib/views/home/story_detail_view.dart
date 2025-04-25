@@ -4,6 +4,13 @@ import '../../models/story_model.dart';
 import '../../controllers/home_controller.dart';
 
 class StoryDetailView extends StatelessWidget {
+  
+  StoryDetailView({
+    super.key,
+    required this.story,
+  });
+
+
   final StoryModel story;
 
   const StoryDetailView({Key? key, required this.story}) : super(key: key);
