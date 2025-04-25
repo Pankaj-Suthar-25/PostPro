@@ -11,6 +11,9 @@ class StoryModel {
   /// The content of the story.
   late String content;
 
+  /// The name of the author who wrote the story.
+  late String author;
+
   /// The ID of the author who wrote the story.
   late String authorId;
 
@@ -40,6 +43,7 @@ class StoryModel {
     required this.id,
     required this.title,
     required this.content,
+    required this.author,
     required this.authorId,
     required this.publicationId,
     required this.createdAt,
@@ -56,6 +60,7 @@ class StoryModel {
       'id': id,
       'title': title,
       'content': content,
+      'author': author,
       'authorId': authorId,
       'publicationId': publicationId,
       'createdAt': createdAt,

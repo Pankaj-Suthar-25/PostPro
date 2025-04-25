@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/explore_controller.dart';
-import '../../widgets/story_list_item.dart';
+import '../home/story_card.dart';
 
 class ExploreView extends StatelessWidget {
   final ExploreController _exploreController = Get.put(ExploreController());
@@ -76,17 +76,7 @@ class ExploreView extends StatelessWidget {
                   final story = _exploreController.searchQuery.value.isEmpty
                       ? _exploreController.trendingStories[index]
                       : _exploreController.searchResults[index];
-                  return StoryCard(
-                    title: story.title,
-                    subtitle: 'This is a subtitle',
-                    imageUrl: 'https://picsum.photos/200/300',
-                    authorName: 'John Doe',
-                    authorAvatarUrl: 'https://picsum.photos/50/50',
-                    date: '1 day ago',
-                    applauseCount: 100,
-                    commentCount: 50,
-                    dislikeCount: 10,
-                  );
+                  return StoryCard(story: story);
                 },
               );
             }),

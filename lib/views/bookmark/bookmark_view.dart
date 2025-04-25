@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/bookmark_controller.dart';
-import '../../widgets/story_list_item.dart';
-import 'new_list_view.dart';
+import '../home/story_card.dart';
 import 'your_lists_view.dart';
 import 'saved_list_view.dart';
 import 'highlights_view.dart';
@@ -22,7 +21,7 @@ class BookmarkView extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Get.to(() => NewListView());
+              //Get.to(() => NewListView());
             },
           ),
         ],
@@ -55,16 +54,8 @@ class BookmarkView extends StatelessWidget {
                 itemCount: _bookmarkController.bookmarkedStories.length,
                 itemBuilder: (context, index) {
                   return StoryCard(
-                    title: _bookmarkController.bookmarkedStories[index].title,
-                    subtitle: 'This is a subtitle',
-                    imageUrl: 'https://picsum.photos/200/300',
-                    authorName: 'John Doe',
-                    authorAvatarUrl: 'https://picsum.photos/50/50',
-                    date: '1 day ago',
-                    applauseCount: 100,
-                    commentCount: 50,
-                    dislikeCount: 10,
-                  );
+                    story: _bookmarkController.bookmarkedStories[index],
+                      );
                 },
               );
             }),

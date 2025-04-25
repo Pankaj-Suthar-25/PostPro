@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/home_controller.dart';
-import '../../widgets/story_list_item.dart';
+import 'package:postpro/views/home/story_card.dart';
 import '../notification/notification_view.dart';
 import '../../controllers/main_controller.dart';
 import '../explore/explore_view.dart';
@@ -69,16 +69,8 @@ class HomeView extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: _homeController.stories.length,
                     itemBuilder: (context, index) {
-                      return StoryCard(
-                        title: _homeController.stories[index].title,
-                        subtitle: 'This is a subtitle',
-                        imageUrl: 'https://picsum.photos/200/300',
-                        authorName: 'John Doe',
-                        authorAvatarUrl: 'https://picsum.photos/50/50',
-                        date: '1 day ago',
-                        applauseCount: 100,
-                        commentCount: 50,
-                        dislikeCount: 10,
+                      final story = _homeController.stories[index];
+                      return StoryCard( story: story,
                       );
                     },
                   ),

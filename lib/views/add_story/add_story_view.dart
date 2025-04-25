@@ -9,6 +9,7 @@ class AddStoryView extends StatelessWidget {
     id: '',
     title: '',
     content: '',
+    author: 'Test Author',
     authorId: '',
     publicationId: '',
     createdAt: null,

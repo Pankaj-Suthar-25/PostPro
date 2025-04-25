@@ -21,6 +21,12 @@ class StoryCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(story.author, style: TextStyle(fontSize: 14),),
+              const SizedBox(height: 5),
+               Text(
+                story.title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               Text(story.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
               Text(
